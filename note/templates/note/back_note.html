@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更新筆記</title>
+</head>
+<body>
+<form action="{{ get_path }}" method="POST">
+    <P>
+        標題：<input type="text" name="title" value="{{ note.title }}" >
+    </P>
+    <P>
+        內容：<textarea cols="100" rows="20" name="content" >{{ note.content }}</textarea><input type="submit" value="返回">
+    </P>
+        頁碼：<textarea cols="32" rows="1" name="note_path"> {{ get_path }} </textarea>
+
+</form>
+</body>
+</html>

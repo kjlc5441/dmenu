@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV1</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+    }
+    .all{
+        margin:0px; 
+        width:1366px; 
+        height:768px; 
+        /* border:solid 1px #000000; */
+    }
+    .all div{
+        width:448px; 
+        height:375px; 
+        border:solid 1px rgb(224, 220, 220); 
+        border-radius: 5px;
+        float:left; 
+        margin-left:4px;
+        margin-top: 4px;
+        box-shadow: 0px 3px 3px 0px rgb(141, 138, 138);
+        position:relative
+    }
+    .all img{
+        width: 100%;
+        height:100%;
+        opacity: 1;
+    }
+    .all img.saleout{
+        position:absolute; 
+        opacity: 0;
+    } 
+    .all #price{
+        position:absolute; 
+        top: 10px;
+        right: 36px;
+       font-size: 38px;
+       font-family:Arial, Helvetica, sans-serif;
+       /* font-style: italic; */
+    }
+    .all #dollars{
+        position:absolute; 
+        top: 24px;
+        right: 12px;
+       font-size: 20px;
+       font-family:Arial, Helvetica, sans-serif;
+       font-weight: bold;
+    }
+</style>
+<body>
+    <div class="all">
+        <div class="{{ A1.title }}">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img src="/static/img/{{ A1.content }}" alt="主商品A1">
+                <span id="price">{{ A1.price }}</span>
+                <span id="dollars">元</span>
+        </div>
+        <div class="{{ A2.title }}">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img src="/static/img/{{ A2.content }}" alt="主商品A2">
+                <span id="price">{{ A2.price }}</span>     
+                <span id="dollars">元</span>
+        </div>
+        <div class="{{ A3.title }}">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img src="/static/img/{{ A3.content }}" alt="主商品A3">
+                <span id="price">{{ A3.price }}</span>    
+                <span id="dollars">元</span>
+        </div>
+        <div class="{{ A4.title }}">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img src="/static/img/{{ A4.content }}" alt="主商品A4">
+                <span id="price">{{ A4.price }}</span>    
+                <span id="dollars">元</span>
+        </div>
+        <div class="{{ A5.title }}">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img src="/static/img/{{ A5.content }}" alt="主商品A5">
+                <span id="price">{{ A5.price }}</span>    
+                <span id="dollars">元</span>
+        </div>
+        <div class="{{ A6.title }}">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img src="/static/img/{{ A6.content }}" alt="主商品A6">
+                <span id="price">{{ A6.price }}</span>    
+                <span id="dollars">元</span>
+        </div>
+        <span id="change"></span>
+    </div>
+
+<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript"> 
+    // 定義共用函數
+    var Timer=30000;
+    // 處理售完
+    var JsonNote_dic={{JsonNote_dic|safe}};
+        console.log("JsonNote_dic:",JsonNote_dic);
+    var A1=JsonNote_dic.A1
+    var A2=JsonNote_dic.A2
+    var A3=JsonNote_dic.A3
+    var A4=JsonNote_dic.A4
+    var A5=JsonNote_dic.A5
+    var A6=JsonNote_dic.A6
+        console.log(A1,A2,A3,A4,A5,A6)
+    
+    if(A1){
+        $('.A1 .saleout').animate({'opacity': '1',
+        },100,function(){$('.A1').animate({'opacity':'0.5',})
+        })
+    }else{$('.A1 .saleout').animate({'opacity': '0',
+        },100,function(){$('.A1').animate({'opacity':'1',})
+        })
+    }
+        
+    if(A2){
+        $('.A2 .saleout').animate({'opacity': '1',
+        },100,function(){$('.A2').animate({'opacity':'0.5',})
+        })
+    }else{$('.A2 .saleout').animate({'opacity': '0',
+        },100,function(){$('.A2').animate({'opacity':'1',})
+        })
+    }
+
+    if(A3){
+        $('.A3 .saleout').animate({'opacity': '1',
+        },100,function(){$('.A3').animate({'opacity':'0.5',})
+        })
+    }else{$('.A3 .saleout').animate({'opacity': '0',
+        },100,function(){$('.A3').animate({'opacity':'1',})
+        })
+    }
+
+    if(A4){
+        $('.A4 .saleout').animate({'opacity': '1',
+        },100,function(){$('.A4').animate({'opacity':'0.5',})
+        })
+    }else{$('.A4 .saleout').animate({'opacity': '0',
+        },100,function(){$('.A4').animate({'opacity':'1',})
+        })
+    }
+
+    if(A5){
+        $('.A5 .saleout').animate({'opacity': '1',
+        },100,function(){$('.A5').animate({'opacity':'0.5',})
+        })
+    }else{$('.A5 .saleout').animate({'opacity': '0',
+        },100,function(){$('.A5').animate({'opacity':'1',})
+        })
+    }
+
+    if(A6){
+        $('.A6 .saleout').animate({'opacity': '1',
+        },100,function(){$('.A6').animate({'opacity':'0.5',})
+        })
+    }else{$('.A6 .saleout').animate({'opacity': '0',
+        },100,function(){$('.A6').animate({'opacity':'1',})
+        })
+    }
+            
+
+    function myrefresh() {
+        window.location.reload();
+        }
+        setTimeout('myrefresh()',Timer); //指定1秒刷新一次
+
+
+
+</script>
+    
+</body>
+
+</html>

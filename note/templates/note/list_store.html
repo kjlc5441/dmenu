@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>store_list</title>
+</head>
+
+<style>
+*{
+    font: 20px  'Times New Roman';
+}
+table,td,th{
+    padding: 3px;
+    margin: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: cadetblue;
+    border-collapse: collapse;
+}
+img{
+        width:700px; 
+        height:220px; 
+}
+
+</style>
+
+<body>
+<h3> (門市)資料設定 </h3> 
+<!-- <tr>使用者-{{ request.session.username }}</tr> -->
+<tr>
+   <tr></tr>
+    <!-- <td><a href="/note/store">新增內容</a></td> -->
+    <td><a href="/index">/  回首頁</a></td>
+</tr>
+<br>
+<br>
+
+<table>
+    <tr>
+        <th>店名</th>
+        <th>電話</th>
+    </tr>
+    <tr>
+        <td>{{ all_item.store_name }}</td>
+        <td>{{ all_item.store_tel }}</td>
+        <td>
+            <a href="/note/mod_store">更新</a>
+            <!-- <a href="/note/del_note/{{ note.id }}">刪除</a> -->
+        </td>
+    </tr>
+</table>
+
+<img src="/static/img/num1_small.jpg" alt="位置圖">
+<br>
+<br>
+
+<!-- 方案 /note/4 -->
+
+<!-- {% if c_page.has_previous %}
+    <a href="/note/{{ c_page.previous_page_number }}">上一頁</a>
+{% else %}
+    上一頁
+{% endif %}
+
+{% for p_num in paginator.page_range %}
+    {% if p_num == c_page.number %}
+        {{ p_num }}
+    {% else %}
+        <a href="/note/{{ p_num }}">{{ p_num }}</a>
+    {% endif %}
+{% endfor %}
+
+{% if c_page.has_next %}
+    <a href="/note/{{ c_page.next_page_number }}">下一頁</a>
+{% else %}
+    下一頁
+{% endif %} -->
+
+
+</body>
+</html>

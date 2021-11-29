@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV2_2格輪撥</title>
+</head>
+
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+    }
+    .all{
+        width:910px; 
+        height:386px; 
+        /* border:solid 1px #000000; */
+    }
+    .all div{
+        width:448px; 
+        height:375px; 
+        border:solid 1px rgb(224, 220, 220); 
+        border-radius: 5px;
+        float:left; 
+        margin-left:4px;
+        margin-top: 4px;
+        box-shadow: 0px 3px 3px 0px rgb(141, 138, 138);
+        position:relative
+    }
+    .all img{
+        width: 100%;
+        height:100%;
+    }
+    .all img.saleout{
+        position:absolute; 
+        opacity: 0;
+    } 
+    .all #price{
+        position:absolute; 
+        top: 10px;
+        right: 36px;
+       font-size: 38px;
+       font-family:Arial, Helvetica, sans-serif;
+       /* font-style: italic; */
+    }
+    .all #dollars{
+        position:absolute; 
+        top: 24px;
+        right: 12px;
+       font-size: 20px;
+       font-family:Arial, Helvetica, sans-serif;
+       font-weight: bold;
+    }
+</style>
+<body>
+    <div class="all">
+        <div class="{{ B1.title }}",id="B1">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img id="item_pic1" src="/static/img/{{ B1.content }}" alt="主商品輪撥區B1">
+                <span id="price" ><p id="item_price1">{{ B1.price }}</p></span>    
+                <span id="dollars">元</span>
+        </div>
+        <div class="{{ B2.title }}",id="B2">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img id="item_pic2" src="/static/img/{{ B2.content }}" alt="主商品輪撥區B2">
+                <span id="price"><p id="item_price2">{{ B2.price }}</p></span>    
+                <span id="dollars">元</span>
+        </div>
+        <span id="change"></span>
+    </div>
+    
+</body>
+<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript"> 
+    // 定義共用函數
+    var Timer=5000;
+    var start_count=2;
+    // 更換 兩張圖-數據內容
+    var change = document.getElementById('change');
+    var arr_content = {{JsonContent|safe }}
+        // console.log(arr_content)
+    var item_pic1 = document.getElementById('item_pic1');
+    var item_pic2 = document.getElementById('item_pic2');
+    var im =start_count;
+    function circle(){
+        var arr = [];
+        var pic=im;
+        for(var loop=1;loop<3;loop++){
+            // 每次捉取2本輪撥 到最後一本回到第一本
+            arr.push(Math.floor(pic %arr_content.length))
+            pic++;
+            // console.log("img:", arr)
+        }
+        return arr;
+    }
+    change.onclick = function(){
+        var arr = circle();            
+        item_pic1.src ="/static/img/"+arr_content[arr[0]];
+        item_pic2.src ="/static/img/"+arr_content[arr[1]];
+        im=im+2
+    }
+    // 更換 兩張圖-數據內容-自动切换
+    setInterval(change.onclick,Timer)
+
+
+    // 更換 兩張圖price部份
+    var arr_price = {{JsonPrice|safe }}
+        // console.log(arr_price)
+    var change = document.getElementById('change');
+    var item_price1 = document.getElementById('item_price1');
+    var item_price2 = document.getElementById('item_price2');
+    var pr = start_count;
+    function circle2(){
+        var arr2=[];
+        var pic2=pr;
+        for(var loop=1;loop<3;loop++){
+            // 每次捉取2本輪撥 到最後一本回到第一本
+            arr2.push(Math.floor(pic2 %arr_price.length))
+            pic2++;
+            // console.log("price:", arr2)
+            }
+        return arr2;
+    }
+    change.onclick = function(){
+        var arr2 = circle2();            
+        item_price1.innerHTML =arr_price[arr2[0]];
+        item_price2.innerHTML =arr_price[arr2[1]];
+        pr=pr+2
+    }
+    //更換 兩張圖price部份-自动切换
+    setInterval(change.onclick,Timer)
+
+
+   // 更換 兩張圖[售完]部份
+    var change = document.getElementById('change');
+    var arr_saleout={{JsonSaleout|safe}};
+        console.log("arr_saleout:",arr_saleout);
+    var B1=arr_saleout[0];
+    var B2=arr_saleout[1];
+        // console.log("first",B1,B2)
+    if(B1){
+            $('.B1 .saleout').animate({'opacity': '1',
+            },100,function(){$('.B1').animate({'opacity':'0.5',})
+            })
+        }else{$('.B1 .saleout').animate({'opacity': '0',
+            },100,function(){$('.B1').animate({'opacity':'1',})
+            })
+        }
+        if(B2){
+            $('.B2 .saleout').animate({'opacity': '1',
+            },100,function(){$('.B2').animate({'opacity':'0.5',})
+            })
+        }else{$('.B2 .saleout').animate({'opacity': '0',
+            },100,function(){$('.B2').animate({'opacity':'1',})
+            })
+        }
+    // 判斷第二組後的售完
+    var sa =start_count;  
+    function circle3(){
+        var arr3= [];
+        var pic3=sa;
+        for(var loop=1;loop<3;loop++){
+            // 每次捉取2本輪撥 到最後一本回到第一本
+            arr3.push(Math.floor(pic3 %arr_saleout.length))
+            pic3++;
+            // console.log("arr3:",arr3)
+        }
+        return arr3;
+    }
+    change.onclick = function(){
+        var arr3 = circle3();            
+        B1 =arr_saleout[arr3[0]];
+        B2 =arr_saleout[arr3[1]];
+            console.log("after",B1,B2)
+        if(B1){
+                $('.B1 .saleout').animate({'opacity': '1',
+                },100,function(){$('.B1').animate({'opacity':'0.5',})
+                })
+            }else{$('.B1 .saleout').animate({'opacity': '0',
+                },100,function(){$('.B1').animate({'opacity':'1',})
+                })
+            }
+            if(B2){
+                $('.B2 .saleout').animate({'opacity': '1',
+                },100,function(){$('.B2').animate({'opacity':'0.5',})
+                })
+            }else{$('.B2 .saleout').animate({'opacity': '0',
+                },100,function(){$('.B2').animate({'opacity':'1',})
+                })
+            }
+            // 完成一輪B區圖片播放 整理頁面_呼叫
+            if (arr3[0]==0){
+                console.log("arr3:",arr3)
+                myrefresh()
+            }
+        sa=sa+2
+    }
+
+    // 完成一輪B區圖片播放 整理頁面_執行
+    function myrefresh() {
+        window.location.reload();
+    }
+ 
+  //更換 兩張圖[售完]部份-自动切换
+    setInterval(change.onclick,Timer)
+
+    // 輪撥時 fadein效果-1號圖
+    $('.all').each(function(){
+        let slideImgs = $(this).find('#item_pic1'),
+        slideImgsCount = slideImgs.length,
+        currentIndex = 0;
+        slideImgs.eq(currentIndex).fadeIn();
+        function showNextSlide(){
+            let nextIndex = (currentIndex + 1) % slideImgsCount;
+            slideImgs.eq(currentIndex).fadeTo(300,0.5);
+            slideImgs.eq(nextIndex).fadeTo(300,1);
+            currentIndex = nextIndex;
+        }
+        setInterval(showNextSlide, Timer);
+    })
+   
+    // 輪撥時 fadein效果-2號圖
+    $('.all').each(function(){
+        let slideImgs = $(this).find('#item_pic2'),
+        slideImgsCount = slideImgs.length,
+        currentIndex = 0;
+        slideImgs.eq(currentIndex).fadeIn();
+        function showNextSlide2(){
+            let nextIndex = (currentIndex + 1) % slideImgsCount;
+            slideImgs.eq(currentIndex).fadeTo(300,0.5);
+            slideImgs.eq(nextIndex).fadeTo(300,1);
+            currentIndex = nextIndex;
+        }
+        setInterval(showNextSlide2, Timer);
+    })
+
+</script>
+</html>

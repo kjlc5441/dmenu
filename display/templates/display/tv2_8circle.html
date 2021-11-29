@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV2_單品輪撥</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        border:0px ;
+        overflow: hidden;
+    }
+    .singleArea{
+        width:450px; 
+        height:600px; 
+        background-color: khaki;
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .singleArea div{
+        width:430px; 
+        height:60px; 
+        float:left; 
+        margin: 6px 5px 0px 25px;
+        position:relative
+    }
+    .singleArea img{
+        width:62%;
+        height:80%;
+        margin-left:15px;
+        border-radius: 5px;
+        box-shadow: 0px 3px 3px 0px rgb(141, 138, 138);
+    }
+    .singleArea #price{
+        position:absolute; 
+        bottom: 12px;
+        right: 80px;
+        font-size: 32px;
+        font-family:Arial, Helvetica, sans-serif;
+        /* font-style: italic; */
+        text-decoration-line: underline;
+    }
+    .singleArea #dollars{
+        position:absolute; 
+        bottom: 14px;
+        right: 50px;
+       font-size: 20px;
+       font-family:Arial, Helvetica, sans-serif;
+       font-weight: bold;
+    }
+  
+</style>
+<body>
+    <div class="singleArea">
+        <p style="text-align: center;font-size: 32px; padding:10px ;"> 其他商品區 </p>
+       
+        <div>
+            <img id="item_pic1" src="/static/img2/{{noteC_content.0 }}" alt="單品C1">
+                <span id="price"><p id="item_price1">{{ noteC_price.0 }}</p></span>
+                <span id="dollars">元</span>
+        </div>
+        <div>
+            <img id="item_pic2" src="/static/img2/{{noteC_content.1 }}" alt="單品C2">
+                <span id="price"><p id="item_price2">{{ noteC_price.1 }}</p></span>
+                <span id="dollars">元</span>
+        </div>
+        <div>
+            <img id="item_pic3" src="/static/img2/{{noteC_content.2 }}" alt="單品C3">
+                <span id="price"><p id="item_price3">{{ noteC_price.2 }}</p></span>
+                <span id="dollars">元</span>
+        </div>
+        <div>
+            <img id="item_pic4" src="/static/img2/{{noteC_content.3 }}" alt="單品C4">
+                <span id="price"><p id="item_price4">{{ noteC_price.3 }}</p></span>
+                <span id="dollars">元</span>
+        </div>
+        <div>
+            <img id="item_pic5" src="/static/img2/{{noteC_content.4 }}" alt="單品C5">
+                <span id="price"><p id="item_price5">{{ noteC_price.4 }}</p></span>
+                <span id="dollars">元</span>
+        </div>
+        <div>
+            <img id="item_pic6" src="/static/img2/{{noteC_content.5 }}" alt="單品C6">
+                <span id="price"><p id="item_price6">{{ noteC_price.5 }}</p></span>
+                <span id="dollars">元</span>
+        </div>
+        <div>
+            <img id="item_pic7" src="/static/img2/{{noteC_content.6 }}" alt="單品C7">
+                <span id="price"><p id="item_price7">{{ noteC_price.6 }}</p></span>
+                <span id="dollars">元</span>
+        </div>
+        <div>
+            <img id="item_pic8" src="/static/img2/{{noteC_content.7 }}" alt="單品C8">
+                <span id="price"><p id="item_price8">{{ noteC_price.7 }}</p></span>
+                <span id="dollars">元</span>
+        </div>
+        <span id="change"></span>
+    </div>
+
+</body>
+
+<script>
+    // 輪撥圖 對應列表範本，使用資料庫後 改成下述方案
+    // var arr_img_url=  [
+    //     "9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg", ]
+
+    var arr_img_url = {{JsonContent|safe }}
+    console.log(arr_img_url)
+    // 定义一个函数 从数组中获取2个索引值,通过索引值找到对应的路径
+    var change = document.getElementById('change');
+    // var imgs = document.getElementsByTagName('img');
+    var item_pic1 = document.getElementById('item_pic1');
+    var item_pic2 = document.getElementById('item_pic2');
+    var item_pic3 = document.getElementById('item_pic3');
+    var item_pic4 = document.getElementById('item_pic4');
+    var item_pic5 = document.getElementById('item_pic5');
+    var item_pic6 = document.getElementById('item_pic6');
+    var item_pic7 = document.getElementById('item_pic7');
+    var item_pic8 = document.getElementById('item_pic8');
+    function circle(){
+        var arr = [];
+        var pic=n
+        for(var loop=1;loop<9;loop++){
+            // 每次捉取9輪撥 到最後一本回到第一本
+            arr.push(Math.floor(pic %arr_img_url.length))
+            pic++;
+            console.log(arr)
+        }
+        return arr;
+    }
+    var n = 0;
+    change.onclick = function(){
+        var arr = circle();            
+        item_pic1.src ="/static/img2/"+arr_img_url[arr[0]];
+        item_pic2.src ="/static/img2/"+arr_img_url[arr[1]];
+        item_pic3.src ="/static/img2/"+arr_img_url[arr[2]];
+        item_pic4.src ="/static/img2/"+arr_img_url[arr[3]];
+        item_pic5.src ="/static/img2/"+arr_img_url[arr[4]];
+        item_pic6.src ="/static/img2/"+arr_img_url[arr[5]];
+        item_pic7.src ="/static/img2/"+arr_img_url[arr[6]];
+        item_pic8.src ="/static/img2/"+arr_img_url[arr[7]];
+        n=n+1
+    }
+    //設定自动切换
+    setInterval(change.onclick,5000)
+
+    //價格輪撥
+    var arr_price_url = {{JsonPrice|safe }}
+    console.log(arr_price_url)
+    // 定义一个函数 从数组中获取2个索引值,通过索引值找到对应的路径
+    var change = document.getElementById('change');
+    var item_price1 = document.getElementById('item_price1');
+    var item_price2 = document.getElementById('item_price2');
+    var item_price3 = document.getElementById('item_price3');
+    var item_price4 = document.getElementById('item_price4');
+    var item_price5 = document.getElementById('item_price5');
+    var item_price6 = document.getElementById('item_price6');
+    var item_price7 = document.getElementById('item_price7');
+    var item_price8 = document.getElementById('item_price8');
+    function circle2(){
+        var arr2=[];
+        var pic2=n2
+        for(var loop=1;loop<9;loop++){
+            // 每次捉取2本輪撥 到最後一本回到第一本
+            arr2.push(Math.floor(pic2 %arr_price_url.length))
+            pic2++;
+            console.log(arr2)
+        }
+        return arr2;
+    }
+    
+    var n2 = 0;
+    change.onclick = function(){
+        var arr2 = circle2();            
+        item_price1.innerHTML =arr_price_url[arr2[0]];
+        item_price2.innerHTML =arr_price_url[arr2[1]];
+        item_price3.innerHTML =arr_price_url[arr2[2]];
+        item_price4.innerHTML =arr_price_url[arr2[3]];
+        item_price5.innerHTML =arr_price_url[arr2[4]];
+        item_price6.innerHTML =arr_price_url[arr2[5]];
+        item_price7.innerHTML =arr_price_url[arr2[6]];
+        item_price8.innerHTML =arr_price_url[arr2[7]];
+        n2=n2+1
+    }
+    //設定自动切换
+    setInterval(change.onclick,5000)
+</script>
+
+</html>

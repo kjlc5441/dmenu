@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV2</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+    }
+    .ComboArea{
+        width:910px; 
+        height:768px; 
+        /* border:solid 1px #000000; */
+    }
+    .ComboArea div{
+        width:448px; 
+        height:375px; 
+        border:solid 1px rgb(224, 220, 220); 
+        border-radius: 5px;
+        float:left; 
+        margin-left:4px;
+        margin-top: 4px;
+        box-shadow: 0px 3px 3px 0px rgb(141, 138, 138);
+        position:relative
+    }
+    .ComboArea img{
+        width: 100%;
+        height:100%;
+    }
+    .ComboArea img.saleout{
+        position:absolute; 
+        opacity: 0;
+    } 
+    .ComboArea #price{
+        position:absolute; 
+        top: 12px;
+        right: 36px;
+       font-size: 36px;
+       font-family:sans-serif;
+       font-style: italic;
+    }
+    .ComboArea #dollars{
+        position:absolute; 
+        top: 22px;
+        right: 12px;
+       font-size: 20px;
+       font-weight: bold;
+    }
+    .ComboArea  .circle{
+        width:910px; 
+        height:378px; 
+        margin: 0px;
+        padding: 0px;
+        margin-left: -1px;
+
+    }
+    .SingleArea{
+        width: 448px;
+        height: 600px;
+        margin: 4px;
+        border-radius: 5px;
+        position: absolute;
+        left: 910px;
+        top: 0px;
+        box-shadow: 0px 3px 3px 0px rgb(141, 138, 138);
+    }
+    .StoreInfor{
+        width: 448px;
+        height: 152px;
+        margin-left: 4px;
+        border-radius: 5px;
+        background-color: rgb(243, 163, 71);
+        position: absolute;
+        left: 910px;
+        top: 610px;
+        box-shadow: 0px 3px 3px 0px rgb(141, 138, 138);
+    }
+</style>
+<body>
+    <div class="ComboArea">
+        <div class="A7">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img src="/static/img/{{ A7.content }}" alt="主商品A7">
+                <span id="price">{{ A7.price }}</span>
+                <span id="dollars">元</span>
+        </div>
+        <div class="A8">
+            <img class="saleout" src="/static/img/saleout.png" alt="售完">
+            <img src="/static/img/{{ A8.content }}" alt="主商品A8">
+                <span id="price">{{ A8.price }}</span>     
+                <span id="dollars">元</span>
+        </div>
+       
+        <!-- 2格輪撥區   重要 重要 src連結 url位置-->
+        <div class="circle">
+            <iframe frameborder="0"
+                noresize="noresize"
+                style="position: absolute; background: transparent; width: 100%; height:100%;"
+                src="tv2_1"
+                frameborder="0">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- 其他商品區  重要 重要 src連結 url位置 -->
+    <div class="SingleArea">
+    <iframe frameborder="0"
+            noresize="noresize"
+            style="position: absolute; background: transparent; width: 100%; height:100%;"
+            src="tv2_2"
+            frameborder="0">
+    </iframe>
+    </div>
+
+    <!-- 商店資訊 -->
+    <div class="StoreInfor">
+        <p style="text-align: center;font-size: 32px; padding:24px ;">{{store.store_name}}</p>   
+        <p style="text-align: center;font-size: 30px; padding:0px ;">{{store.store_tel}}</p>   
+     
+        <!-- 自動播放 -->
+     <span id="change"></span>
+
+</body>
+
+<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript"> 
+    var JsonNote_dic={{JsonNote_dic|safe}};
+        console.log("JsonNote_dic:",JsonNote_dic);
+    var A7=JsonNote_dic.A7
+    var A8=JsonNote_dic.A8
+        console.log(A7,A8)
+
+    if(A7){
+        $('.A7 .saleout').animate({'opacity': '1',
+        },100,function(){$('.A7').animate({'opacity':'0.5',})
+        })
+    }else{$('.A7 .saleout').animate({'opacity': '0',
+        },100,function(){$('.A7').animate({'opacity':'1',})
+        })
+    }
+        
+    if(A8){
+        $('.A8 .saleout').animate({'opacity': '1',
+        },100,function(){$('.A8').animate({'opacity':'0.5',})
+        })
+    }else{$('.A8 .saleout').animate({'opacity': '0',
+        },100,function(){$('.A8').animate({'opacity':'1',})
+        })
+    }
+
+</script>
+
+ <!-- <script>
+    // 輪撥圖 對應列表範本，使用資料庫後 改成下述方案
+    // var arr_img_url=  [
+    //     "9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg", ]
+
+    var arr_img_url = {{JsonContent|safe }}
+    console.log(arr_img_url)
+    // 定义一个函数 从数组中获取2个索引值,通过索引值找到对应的路径
+    var change = document.getElementById('change');
+    // var imgs = document.getElementsByTagName('img');
+    var item_pic1 = document.getElementById('item_pic1');
+    var item_pic2 = document.getElementById('item_pic2');
+    function circle(){
+        var arr = [];
+        var pic=n
+        for(var loop=1;loop<3;loop++){
+            // 每次捉取2本輪撥 到最後一本回到第一本
+            arr.push(Math.floor(pic %arr_img_url.length))
+            pic++;
+            console.log(arr)
+        }
+        return arr;
+    }
+    var n = 0;
+    change.onclick = function(){
+        var arr = circle();            
+        item_pic1.src ="/static/img/"+arr_img_url[arr[0]];
+        item_pic2.src ="/static/img/"+arr_img_url[arr[1]];
+        n=n+2
+    }
+    //設定自动切换
+    setInterval(change.onclick,3000)
+
+    var arr_price_url = {{JsonPrice|safe }}
+    console.log(arr_price_url)
+    // 定义一个函数 从数组中获取2个索引值,通过索引值找到对应的路径
+    var change = document.getElementById('change');
+    var item_price1 = document.getElementById('item_price1');
+    var item_price2 = document.getElementById('item_price2');
+    function circle2(){
+        var arr2=[];
+        var pic2=n2
+        for(var loop=1;loop<3;loop++){
+            // 每次捉取2本輪撥 到最後一本回到第一本
+            arr2.push(Math.floor(pic2 %arr_price_url.length))
+            pic2++;
+            console.log(arr2)
+        }
+        return arr2;
+    }
+    var n2 = 0;
+    change.onclick = function(){
+        var arr2 = circle2();            
+        item_price1.innerHTML =arr_price_url[arr2[0]];
+        item_price2.innerHTML =arr_price_url[arr2[1]];
+        console.log(item_price1,item_price2)
+        n2=n2+2
+    }
+    //設定自动切换
+    setInterval(change.onclick,3000)
+</script> -->
+
+</html>

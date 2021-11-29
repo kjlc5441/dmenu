@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首頁</title>
+</head>
+<body>
+<style>
+    * {
+        font: 24px  'Times New Roman';
+        /* font-weight: bold; */
+        /* text-align: center; */
+        line-height: 40px;
+    }
+</style>
+
+<h1> -- 數位價目表 Menu設定 -- </h1>
+<!--{{ request.session }}-->
+<!--{{ request.COOKIES }}-->
+
+{% if request.session.username %}
+    <P> 歡迎 {{ request.session.username }}</P>
+ 
+     <tr>
+        <a href="/note/1">(A區)商品設定</a>
+    </tr>
+    <tr> / </tr>
+    <tr>
+        <a href="/note/2">(B區)商品設定</a>
+    </tr>
+    <tr> / </tr>
+    <tr>
+        <a href="/note/3">(C區)單品設定</a>
+    </tr>
+    <br>
+    <br>
+    <tr>
+        <a href="/note/4">(門市)資料設定</a>
+    </tr>
+    <p> <a href="/user/logout">登出</a></p>
+
+{% else %}
+    {% if request.COOKIES.username %}
+    <P>歡迎 {{ request.COOKIES.username }}</P>
+  
+    <tr>
+        <a href="/note/1">(A區)商品設定</a>
+    </tr>
+    <tr> // </tr>
+    <tr>
+        <a href="/note/2">(B區)商品設定</a>
+    </tr>
+    <tr> // </tr>
+    <tr>
+        <a href="/note/3">(C區)單品設定</a>
+    </tr>
+    <br>
+    <br>
+    <tr>
+        <a href="/note/4">(門市)資料設定</a>
+    </tr>
+    <p> <a href="/user/logout">登出</a></p>
+
+    {% else %}
+    <tr>
+            <!-- <a href="/user/reg">註冊</a> -->
+    </tr>
+    <tr> / </tr>
+    <tr>
+            <a href="/user/login">登入</a>
+    </tr>
+    {% endif %}
+
+{% endif %}
+
+</body>
+</html>
