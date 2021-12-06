@@ -10,106 +10,123 @@
     * {
         margin: 0px;
         padding: 0px;
-        border:0px ;
+        /* border:0px ; */
         overflow: hidden;
     }
-    .singleArea{
+    .all{
         width:450px; 
         height:600px; 
-        background-color: khaki;
-        /* border:solid 1px #000000; */
+        background-color: rgb(253, 253, 212);
+        font-family:Arial, Helvetica, sans-serif;
+        /* font-weight: bold; */
     }
-    .singleArea div{
-        width:430px; 
+    .all div{
+        width:445px; 
         height:60px; 
         float:left; 
         margin: 6px 5px 0px 25px;
-        /* background-color: rgb(180, 240, 140); */
         position:relative
     }
-    .singleArea img{
-        width:62%;
-        height:80%;
-        margin-left:15px;
+    .all  img{
+        width:60%;
+        height:78%;
+        position:absolute; 
+        margin-left:20px;
+        border-radius: 5px;
+        opacity: 1;
         box-shadow: 0px 3px 3px 0px rgb(141, 138, 138);
     }
-    .singleArea #price{
+    .all img.saleout{
+        /* width:62%;
+        height:80%; */
         position:absolute; 
-        bottom: 10px;
-        right: 80px;
+        opacity: 0;
+        z-index:10;
+    } 
+    .all #price{
+        position:absolute; 
+        bottom: 12px;
+        right: 85px;
         font-size: 32px;
-        font-family:sans-serif;
-        font-style: italic;
+        /* font-style: italic; */
         text-decoration-line: underline;
     }
-    .singleArea #dollars{
+    .all #dollars{
         position:absolute; 
         bottom: 14px;
-        right: 50px;
-       font-size: 20px;
-       font-weight: bold;
+        right: 55px;
+        font-size: 20px;
+        font-weight: bold;
     }
   
 </style>
 <body>
-    <div class="singleArea">
-        <p style="text-align: center;font-size: 32px; padding:10px ;">其他商品區 </p>
-       
-        <div>
-            <img id="item_pic1" src="/static/img2/{{noteC_content.0 }}" alt="單品C1">
-                <span id="price"><p id="item_price1">{{ noteC_price.0 }}</p></span>
-                <span id="dollars">元</span>
-        </div>
-        <div>
-            <img id="item_pic2" src="/static/img2/{{noteC_content.1 }}" alt="單品C2">
-                <span id="price"><p id="item_price2">{{ noteC_price.1 }}</p></span>
-                <span id="dollars">元</span>
-        </div>
-        <div>
-            <img id="item_pic3" src="/static/img2/{{noteC_content.2 }}" alt="單品C3">
-                <span id="price"><p id="item_price3">{{ noteC_price.2 }}</p></span>
-                <span id="dollars">元</span>
-        </div>
-        <div>
-            <img id="item_pic4" src="/static/img2/{{noteC_content.3 }}" alt="單品C4">
-                <span id="price"><p id="item_price4">{{ noteC_price.3 }}</p></span>
-                <span id="dollars">元</span>
-        </div>
-        <div>
-            <img id="item_pic5" src="/static/img2/{{noteC_content.4 }}" alt="單品C5">
-                <span id="price"><p id="item_price5">{{ noteC_price.4 }}</p></span>
-                <span id="dollars">元</span>
-        </div>
-        <div>
-            <img id="item_pic6" src="/static/img2/{{noteC_content.5 }}" alt="單品C6">
-                <span id="price"><p id="item_price6">{{ noteC_price.5 }}</p></span>
-                <span id="dollars">元</span>
-        </div>
-        <div>
-            <img id="item_pic7" src="/static/img2/{{noteC_content.6 }}" alt="單品C7">
-                <span id="price"><p id="item_price7">{{ noteC_price.6 }}</p></span>
-                <span id="dollars">元</span>
-        </div>
-        <div>
-            <img id="item_pic8" src="/static/img2/{{noteC_content.7 }}" alt="單品C8">
-                <span id="price"><p id="item_price8">{{ noteC_price.7 }}</p></span>
-                <span id="dollars">元</span>
-        </div>
-        <span id="change"></span>
-    </div>
+<!-- <div class="singleArea"> -->
 
+    
+    <div class="all">
+        <p style="text-align: center;font-size: 32px; padding:10px ;"> 其他商品區 </p>
+        <div class="{{ C1.title }}">
+            <img class="saleout" src="/static/img2/saleout2.png" alt="售完">
+            <img  id="item_pic1" src="/static/img2/{{ C1.content }}" alt="單品C1">
+            <span id="price"><p id="item_price1">{{ C1.price }}</p></span>
+            <span id="dollars">元</span>
+        </div>
+        <div class="{{ C2.title }}">
+            <img class="saleout" src="/static/img2/saleout2.png" alt="售完">
+            <img  id="item_pic2" src="/static/img2/{{ C2.content }}" alt="單品C2">
+            <span id="price"><p id="item_price2">{{ C2.price }}</p></span>
+            <span id="dollars">元</span>
+        </div>
+        <div class="{{ C3.title }}">
+            <img class="saleout" src="/static/img2/saleout2.png" alt="售完">
+            <img  id="item_pic3" src="/static/img2/{{ C3.content }}" alt="單品C3">
+            <span id="price"><p id="item_price3">{{ C3.price }}</p></span>
+            <span id="dollars">元</span>
+        </div>
+        <div class="{{ C4.title }}">
+            <img class="saleout" src="/static/img2/saleout2.png" alt="售完">
+            <img  id="item_pic4" src="/static/img2/{{ C4.content }}" alt="單品C4">
+            <span id="price"><p id="item_price4">{{ C4.price }}</p></span>
+            <span id="dollars">元</span>
+        </div>
+        <div class="{{ C5.title }}">
+            <img class="saleout" src="/static/img2/saleout2.png" alt="售完">
+            <img  id="item_pic5" src="/static/img2/{{ C5.content }}" alt="單品C5">
+            <span id="price"><p id="item_price5">{{ C5.price }}</p></span>
+            <span id="dollars">元</span>
+        </div>
+        <div class="{{ C6.title }}">
+            <img class="saleout" src="/static/img2/saleout2.png" alt="售完">
+            <img  id="item_pic6" src="/static/img2/{{ C6.content }}" alt="單品C6">
+            <span id="price"><p id="item_price6">{{ C6.price }}</p></span>
+            <span id="dollars">元</span>
+        </div>
+        <div class="{{ C7.title }}">
+            <img class="saleout" src="/static/img2/saleout2.png" alt="售完">
+            <img  id="item_pic7" src="/static/img2/{{ C7.content }}" alt="單品C7">
+            <span id="price"><p id="item_price7">{{ C7.price }}</p></span>
+            <span id="dollars">元</span>
+        </div>
+        <div class="{{ C8.title }}">
+            <img class="saleout" src="/static/img2/saleout2.png" alt="售完">
+            <img  id="item_pic8" src="/static/img2/{{ C8.content }}" alt="單品C8">
+            <span id="price"><p id="item_price8">{{ C8.price }}</p></span>
+            <span id="dollars">元</span>
+        </div>
+    </div>
+<!-- </div> -->
+<span id="change"></span>
 </body>
 
-<script>
-    // 輪撥圖 對應列表範本，使用資料庫後 改成下述方案
-    // var arr_img_url=  [
-    //     "9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg", ]
-
-    var arr_img_url = {{JsonContent|safe }}
-    console.log(arr_img_url)
-    // 定义一个函数 从数组中获取2个索引值,通过索引值找到对应的路径
-    var change = document.getElementById('change');
-    // var imgs = document.getElementsByTagName('img');
+<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript"> 
+    // 定義共用函數
+    var Timer=5000;
+    var start_count=1;
+    // 更換 8張圖-數據內容
+    var arr_content = {{JsonContent|safe }}
+        console.log("arr_content:",arr_content)
     var item_pic1 = document.getElementById('item_pic1');
     var item_pic2 = document.getElementById('item_pic2');
     var item_pic3 = document.getElementById('item_pic3');
@@ -118,38 +135,42 @@
     var item_pic6 = document.getElementById('item_pic6');
     var item_pic7 = document.getElementById('item_pic7');
     var item_pic8 = document.getElementById('item_pic8');
+    var change = document.getElementById('change');
+    var im =start_count;
     function circle(){
         var arr = [];
-        var pic=n
+        var pic=im
         for(var loop=1;loop<9;loop++){
-            // 每次捉取9輪撥 到最後一本回到第一本
-            arr.push(Math.floor(pic %arr_img_url.length))
+            // 每次捉取8張圖 到最後回到第一張
+            arr.push(Math.floor(pic %arr_content.length))
             pic++;
-            console.log(arr)
+            // console.log("img:", arr)
         }
         return arr;
     }
-    var n = 0;
     change.onclick = function(){
         var arr = circle();            
-        item_pic1.src ="/static/img2/"+arr_img_url[arr[0]];
-        item_pic2.src ="/static/img2/"+arr_img_url[arr[1]];
-        item_pic3.src ="/static/img2/"+arr_img_url[arr[2]];
-        item_pic4.src ="/static/img2/"+arr_img_url[arr[3]];
-        item_pic5.src ="/static/img2/"+arr_img_url[arr[4]];
-        item_pic6.src ="/static/img2/"+arr_img_url[arr[5]];
-        item_pic7.src ="/static/img2/"+arr_img_url[arr[6]];
-        item_pic8.src ="/static/img2/"+arr_img_url[arr[7]];
-        n=n+1
+        item_pic1.src ="/static/img2/"+arr_content[arr[0]];
+        item_pic2.src ="/static/img2/"+arr_content[arr[1]];
+        item_pic3.src ="/static/img2/"+arr_content[arr[2]];
+        item_pic4.src ="/static/img2/"+arr_content[arr[3]];
+        item_pic5.src ="/static/img2/"+arr_content[arr[4]];
+        item_pic6.src ="/static/img2/"+arr_content[arr[5]];
+        item_pic7.src ="/static/img2/"+arr_content[arr[6]];
+        item_pic8.src ="/static/img2/"+arr_content[arr[7]];
+        im=im+1
     }
-    //設定自动切换
-    setInterval(change.onclick,5000)
+   // 更換 兩張圖-數據內容-自动切换
+   if(arr_content.length>8){ 
+        console.log('大於8-img輪撥')
+        setInterval(change.onclick,Timer)
+    }
 
-    //價格輪撥
-    var arr_price_url = {{JsonPrice|safe }}
-    console.log(arr_price_url)
-    // 定义一个函数 从数组中获取2个索引值,通过索引值找到对应的路径
-    var change = document.getElementById('change');
+
+    // 更換 8張圖price部份
+    var arr_price = {{JsonPrice|safe }}
+        console.log("arr_price:",arr_price)
+    // 定义一个函数 从数组中获取8个索引值,通过索引值找到对应的路径
     var item_price1 = document.getElementById('item_price1');
     var item_price2 = document.getElementById('item_price2');
     var item_price3 = document.getElementById('item_price3');
@@ -158,33 +179,227 @@
     var item_price6 = document.getElementById('item_price6');
     var item_price7 = document.getElementById('item_price7');
     var item_price8 = document.getElementById('item_price8');
+    var change = document.getElementById('change');
+    var pr = start_count;
     function circle2(){
         var arr2=[];
-        var pic2=n2
+        var pic2=pr;
         for(var loop=1;loop<9;loop++){
-            // 每次捉取2本輪撥 到最後一本回到第一本
-            arr2.push(Math.floor(pic2 %arr_price_url.length))
+             // 每次捉取8張圖價格 到最後回到第一張
+            arr2.push(Math.floor(pic2 %arr_price.length))
             pic2++;
-            console.log(arr2)
+            // console.log("price:",arr2)
         }
         return arr2;
     }
-    
-    var n2 = 0;
     change.onclick = function(){
         var arr2 = circle2();            
-        item_price1.innerHTML =arr_price_url[arr2[0]];
-        item_price2.innerHTML =arr_price_url[arr2[1]];
-        item_price3.innerHTML =arr_price_url[arr2[2]];
-        item_price4.innerHTML =arr_price_url[arr2[3]];
-        item_price5.innerHTML =arr_price_url[arr2[4]];
-        item_price6.innerHTML =arr_price_url[arr2[5]];
-        item_price7.innerHTML =arr_price_url[arr2[6]];
-        item_price8.innerHTML =arr_price_url[arr2[7]];
-        n2=n2+1
+        item_price1.innerHTML =arr_price[arr2[0]];
+        item_price2.innerHTML =arr_price[arr2[1]];
+        item_price3.innerHTML =arr_price[arr2[2]];
+        item_price4.innerHTML =arr_price[arr2[3]];
+        item_price5.innerHTML =arr_price[arr2[4]];
+        item_price6.innerHTML =arr_price[arr2[5]];
+        item_price7.innerHTML =arr_price[arr2[6]];
+        item_price8.innerHTML =arr_price[arr2[7]];
+        pr=pr+1
     }
-    //設定自动切换
-    setInterval(change.onclick,5000)
+    //更換 8張圖price部份-自动切换
+    if(arr_content.length>8){ 
+        console.log('大於8-price輪撥')
+        setInterval(change.onclick,Timer)
+    }
+    
+
+    // 更換 8張圖[售完]部份
+    var arr_saleout={{JsonSaleout|safe}};
+        console.log("arr_saleout:",arr_saleout);
+    var C1=arr_saleout[0];
+    var C2=arr_saleout[1];
+    var C3=arr_saleout[2];
+    var C4=arr_saleout[3];
+    var C5=arr_saleout[4];
+    var C6=arr_saleout[5];
+    var C7=arr_saleout[6];
+    var C8=arr_saleout[7];
+        console.log("first:",C1,C2,C3,C4,C5,C6,C7,C8)
+    var change = document.getElementById('change'); 
+    if(C1){
+            $('.C1 .saleout').animate({'opacity': '1',
+            },100,function(){$('.C1').animate({'opacity':'0.1',})
+            })
+        }else{$('.C1 .saleout').animate({'opacity': '0',
+            },100,function(){$('.C1').animate({'opacity':'1',})
+            })
+        }
+    if(C2){
+        $('.C2 .saleout').animate({'opacity': '1',
+        },100,function(){$('.C2').animate({'opacity':'0.1',})
+        })
+        }else{$('.C2 .saleout').animate({'opacity': '0',
+            },100,function(){$('.C2').animate({'opacity':'1',})
+            })
+        }
+    if(C3){
+        $('.C3 .saleout').animate({'opacity': '1',
+        },100,function(){$('.C3').animate({'opacity':'0.1',})
+        })
+        }else{$('.C3 .saleout').animate({'opacity': '0',
+            },100,function(){$('.C3').animate({'opacity':'1',})
+            })
+        }
+    if(C4){
+        $('.C4 .saleout').animate({'opacity': '1',
+        },100,function(){$('.C4').animate({'opacity':'0.1',})
+        })
+        }else{$('.C4 .saleout').animate({'opacity': '0',
+            },100,function(){$('.C4').animate({'opacity':'1',})
+            })
+        }
+    if(C5){
+            $('.C5 .saleout').animate({'opacity': '1',
+            },100,function(){$('.C5').animate({'opacity':'0.1',})
+            })
+        }else{$('.C5 .saleout').animate({'opacity': '0',
+            },100,function(){$('.C5').animate({'opacity':'1',})
+            })
+        }
+    if(C6){
+        $('.C6 .saleout').animate({'opacity': '1',
+        },100,function(){$('.C6').animate({'opacity':'0.1',})
+        })
+        }else{$('.C6 .saleout').animate({'opacity': '0',
+            },100,function(){$('.C6').animate({'opacity':'1',})
+            })
+        }
+    if(C7){
+        $('.C7 .saleout').animate({'opacity': '1',
+        },100,function(){$('.C7').animate({'opacity':'0.1',})
+        })
+        }else{$('.C7 .saleout').animate({'opacity': '0',
+            },100,function(){$('.C7').animate({'opacity':'1',})
+            })
+        }
+    if(C8){
+        $('.C8 .saleout').animate({'opacity': '1',
+        },100,function(){$('.C8').animate({'opacity':'0.1',})
+        })
+        }else{$('.C8 .saleout').animate({'opacity': '0',
+            },100,function(){$('.C8').animate({'opacity':'1',})
+            })
+        }
+
+    // 判斷第8組後的售完
+    var sa =start_count;  
+    function circle3(){
+        var arr3= [];
+        var pic3=sa;
+        for(var loop=1;loop<9;loop++){
+            // 每次捉取2本輪撥 到最後一本回到第一本
+            arr3.push(Math.floor(pic3 %arr_saleout.length))
+            pic3++;
+            // console.log("arr3:",arr3)
+        }
+        return arr3;
+    }
+    change.onclick = function(){
+        var arr3 = circle3();            
+        C1 =arr_saleout[arr3[0]];
+        C2 =arr_saleout[arr3[1]];
+        C3 =arr_saleout[arr3[2]];
+        C4 =arr_saleout[arr3[3]];
+        C5 =arr_saleout[arr3[4]];
+        C6 =arr_saleout[arr3[5]];
+        C7 =arr_saleout[arr3[6]];
+        C8 =arr_saleout[arr3[7]];
+            console.log("after:",C1,C2,C3,C4,C5,C6,C7,C8)
+        if(C1){
+                $('.C1 .saleout').animate({'opacity': '1',
+                },100,function(){$('.C1').animate({'opacity':'0.1',})
+                })
+            }else{$('.C1 .saleout').animate({'opacity': '0',
+                },100,function(){$('.C1').animate({'opacity':'1',})
+                })
+            }
+        if(C2){
+                $('.C2 .saleout').animate({'opacity': '1',
+                },100,function(){$('.C2').animate({'opacity':'0.1',})
+                })
+            }else{$('.C2 .saleout').animate({'opacity': '0',
+                },100,function(){$('.C2').animate({'opacity':'1',})
+                })
+            }
+        if(C3){
+                $('.C3 .saleout').animate({'opacity': '1',
+                },100,function(){$('.C3').animate({'opacity':'0.1',})
+                })
+            }else{$('.C3 .saleout').animate({'opacity': '0',
+                },100,function(){$('.C3').animate({'opacity':'1',})
+                })
+            }
+        if(C4){
+                $('.C4 .saleout').animate({'opacity': '1',
+                },100,function(){$('.C4').animate({'opacity':'0.1',})
+                })
+            }else{$('.C4 .saleout').animate({'opacity': '0',
+                },100,function(){$('.C4').animate({'opacity':'1',})
+                })
+            }
+        if(C5){
+                $('.C5 .saleout').animate({'opacity': '1',
+                },100,function(){$('.C5').animate({'opacity':'0.1',})
+                })
+            }else{$('.C5 .saleout').animate({'opacity': '0',
+                },100,function(){$('.C5').animate({'opacity':'1',})
+                })
+            }
+        if(C6){
+                $('.C6 .saleout').animate({'opacity': '1',
+                },100,function(){$('.C6').animate({'opacity':'0.1',})
+                })
+            }else{$('.C6 .saleout').animate({'opacity': '0',
+                },100,function(){$('.C6').animate({'opacity':'1',})
+                })
+            }
+        if(C7){
+                $('.C7 .saleout').animate({'opacity': '1',
+                },100,function(){$('.C7').animate({'opacity':'0.1',})
+                })
+            }else{$('.C7 .saleout').animate({'opacity': '0',
+                },100,function(){$('.C7').animate({'opacity':'1',})
+                })
+            }
+        if(C8){
+                $('.C8 .saleout').animate({'opacity': '1',
+                },100,function(){$('.C8').animate({'opacity':'0.1',})
+                })
+            }else{$('.C8 .saleout').animate({'opacity': '0',
+                },100,function(){$('.C8').animate({'opacity':'1',})
+                })
+            }
+            // 完成一輪C區圖片播放 整理頁面_呼叫
+            if (arr3[0]==0){
+                console.log("arr3:",arr3)
+                myrefresh()
+            }
+        sa=sa+1
+    }
+    // 完成一輪C區圖片播放 整理頁面_執行
+    function myrefresh() {
+        window.location.reload();
+    }
+    //更換 8張圖[售完]部份-自动切换
+    if(arr_content.length>8){ 
+        console.log('大於8-saleout輪撥')
+        setInterval(change.onclick,Timer)
+    }else{
+        function myrefresh() {
+        window.location.reload();
+        }
+        setTimeout('myrefresh()',20000); //指定？秒刷新一次
+    }
+
+
 </script>
 
 </html>

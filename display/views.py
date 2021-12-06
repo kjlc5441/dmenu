@@ -76,6 +76,26 @@ def tv2(request):
     return render(request, "display/tv2.html", locals())
 
 
+def tv2_0(request):
+    A7 = Note.objects.get(title='A7', is_active=True)
+    A8 = Note.objects.get(title='A8', is_active=True)
+    # return HttpResponse("tv2_0_html is ok")
+
+    all_item = Note.objects.filter(is_active=True)
+    note_title=[]
+    note_saleout=[]
+    note_dic =[]
+    for i in all_item:
+        note_title.append(i.title)
+        note_saleout.append(i.saleout)
+        note_dic = dict(map(lambda x,y:[x,y],note_title,note_saleout))
+    print(note_dic )
+    JsonTitle=json.dumps(note_title)    
+    JsonSaleout=json.dumps(note_saleout)
+    JsonNote_dic=json.dumps(note_dic)
+    return render(request, "display/tv2_A7A8.html", locals())
+
+
 def tv2_1(request):
     B1= NoteB.objects.get(title='B1', is_active=True)
     B2= NoteB.objects.get(title='B2', is_active=True)
@@ -84,7 +104,7 @@ def tv2_1(request):
     noteB_price=[]
     noteB_title=[]
     noteB_saleout=[]
-    note_dic =[]
+    noteB_dic =[]
     for i in all_item:
         noteB_title.append(i.title)
         noteB_content.append(i.content)
@@ -100,23 +120,53 @@ def tv2_1(request):
     return render(request, "display/tv2_2circle.html", locals())
 
 
+# def tv2_2(request):
+#     all_item = NoteC.objects.filter(is_active=True)
+#     noteC_content=[]
+#     for i in all_item:
+#         noteC_content.append(i.content)
+#     print ("noteC_content:",noteC_content)
+#     JsonContent=json.dumps(noteC_content)
+
+#     noteC_price=[]
+#     for j in all_item:
+#         noteC_price.append(j.price)
+   
+#     # JsonPrice=json.dumps(noteC_price)
+#     JsonPrice = json.dumps(noteC_price, cls=DecimalEncoder)
+#     print ("JsonPrice:",JsonPrice)
+#     # return HttpResponse("tv2_2html is ok")
+#     return render(request, "display/tv2_8circle.html", locals())
+
 def tv2_2(request):
+    C1= NoteC.objects.get(title='C1', is_active=True)
+    C2= NoteC.objects.get(title='C2', is_active=True)
+    C3= NoteC.objects.get(title='C3', is_active=True)
+    C4= NoteC.objects.get(title='C4', is_active=True)
+    C5= NoteC.objects.get(title='C5', is_active=True)
+    C6= NoteC.objects.get(title='C6', is_active=True)
+    C7= NoteC.objects.get(title='C7', is_active=True)
+    C8= NoteC.objects.get(title='C8', is_active=True)
     all_item = NoteC.objects.filter(is_active=True)
     noteC_content=[]
-    for i in all_item:
-        noteC_content.append(i.content)
-    print ("noteC_content:",noteC_content)
-    JsonContent=json.dumps(noteC_content)
-
     noteC_price=[]
-    for j in all_item:
-        noteC_price.append(j.price)
-   
-    # JsonPrice=json.dumps(noteC_price)
+    noteC_title=[]
+    noteC_saleout=[]
+    noteC_dic =[]
+    for i in all_item:
+        noteC_title.append(i.title)
+        noteC_content.append(i.content)
+        noteC_price.append(i.price)
+        noteC_saleout.append(i.saleout)
+        noteC_dic=dict(map(lambda x,y:[x,y],noteC_title,noteC_saleout)) 
+    print("C:",noteC_title,noteC_content,noteC_price,noteC_dic)
+    JsonContent=json.dumps(noteC_content)
     JsonPrice = json.dumps(noteC_price, cls=DecimalEncoder)
-    print ("JsonPrice:",JsonPrice)
-    # return HttpResponse("tv2_2html is ok")
+    JsonSaleout=json.dumps(noteC_saleout)
+    JsonNoteB_dic=json.dumps(noteC_dic)
+    # return HttpResponse("tv2_2 html is ok")
     return render(request, "display/tv2_8circle.html", locals())
+
 
 
 class DecimalEncoder(json.JSONEncoder):

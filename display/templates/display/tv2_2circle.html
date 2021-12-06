@@ -76,7 +76,7 @@
 <script type="text/javascript"> 
     // 定義共用函數
     var Timer=5000;
-    var start_count=2;
+    var start_count=1;
     // 更換 兩張圖-數據內容
     var change = document.getElementById('change');
     var arr_content = {{JsonContent|safe }}
@@ -88,7 +88,7 @@
         var arr = [];
         var pic=im;
         for(var loop=1;loop<3;loop++){
-            // 每次捉取2本輪撥 到最後一本回到第一本
+            // 每次捉取兩張圖 到最後回到第一張
             arr.push(Math.floor(pic %arr_content.length))
             pic++;
             // console.log("img:", arr)
@@ -99,7 +99,7 @@
         var arr = circle();            
         item_pic1.src ="/static/img/"+arr_content[arr[0]];
         item_pic2.src ="/static/img/"+arr_content[arr[1]];
-        im=im+2
+        im=im+1
     }
     // 更換 兩張圖-數據內容-自动切换
     setInterval(change.onclick,Timer)
@@ -127,7 +127,7 @@
         var arr2 = circle2();            
         item_price1.innerHTML =arr_price[arr2[0]];
         item_price2.innerHTML =arr_price[arr2[1]];
-        pr=pr+2
+        pr=pr+1
     }
     //更換 兩張圖price部份-自动切换
     setInterval(change.onclick,Timer)
@@ -136,7 +136,7 @@
    // 更換 兩張圖[售完]部份
     var change = document.getElementById('change');
     var arr_saleout={{JsonSaleout|safe}};
-        console.log("arr_saleout:",arr_saleout);
+        // console.log("arr_saleout:",arr_saleout);
     var B1=arr_saleout[0];
     var B2=arr_saleout[1];
         // console.log("first",B1,B2)
@@ -148,10 +148,10 @@
             },100,function(){$('.B1').animate({'opacity':'1',})
             })
         }
-        if(B2){
-            $('.B2 .saleout').animate({'opacity': '1',
-            },100,function(){$('.B2').animate({'opacity':'0.5',})
-            })
+    if(B2){
+        $('.B2 .saleout').animate({'opacity': '1',
+        },100,function(){$('.B2').animate({'opacity':'0.5',})
+        })
         }else{$('.B2 .saleout').animate({'opacity': '0',
             },100,function(){$('.B2').animate({'opacity':'1',})
             })
@@ -173,7 +173,7 @@
         var arr3 = circle3();            
         B1 =arr_saleout[arr3[0]];
         B2 =arr_saleout[arr3[1]];
-            console.log("after",B1,B2)
+            // console.log("after",B1,B2)
         if(B1){
                 $('.B1 .saleout').animate({'opacity': '1',
                 },100,function(){$('.B1').animate({'opacity':'0.5',})
@@ -182,20 +182,20 @@
                 },100,function(){$('.B1').animate({'opacity':'1',})
                 })
             }
-            if(B2){
-                $('.B2 .saleout').animate({'opacity': '1',
-                },100,function(){$('.B2').animate({'opacity':'0.5',})
-                })
+        if(B2){
+            $('.B2 .saleout').animate({'opacity': '1',
+            },100,function(){$('.B2').animate({'opacity':'0.5',})
+            })
             }else{$('.B2 .saleout').animate({'opacity': '0',
                 },100,function(){$('.B2').animate({'opacity':'1',})
                 })
             }
-            // 完成一輪B區圖片播放 整理頁面_呼叫
-            if (arr3[0]==0){
-                console.log("arr3:",arr3)
-                myrefresh()
-            }
-        sa=sa+2
+        // 完成一輪B區圖片播放 整理頁面_呼叫
+        if (arr3[0]==0){
+            // console.log("arr3:",arr3)
+            myrefresh()
+        }
+        sa=sa+1
     }
 
     // 完成一輪B區圖片播放 整理頁面_執行
@@ -206,35 +206,35 @@
   //更換 兩張圖[售完]部份-自动切换
     setInterval(change.onclick,Timer)
 
-    // 輪撥時 fadein效果-1號圖
-    $('.all').each(function(){
-        let slideImgs = $(this).find('#item_pic1'),
-        slideImgsCount = slideImgs.length,
-        currentIndex = 0;
-        slideImgs.eq(currentIndex).fadeIn();
-        function showNextSlide(){
-            let nextIndex = (currentIndex + 1) % slideImgsCount;
-            slideImgs.eq(currentIndex).fadeTo(300,0.5);
-            slideImgs.eq(nextIndex).fadeTo(300,1);
-            currentIndex = nextIndex;
-        }
-        setInterval(showNextSlide, Timer);
-    })
+    // // 輪撥時 fadein效果-1號圖
+    // $('.all').each(function(){
+    //     let slideImgs = $(this).find('#item_pic1'),
+    //     slideImgsCount = slideImgs.length,
+    //     currentIndex = 0;
+    //     slideImgs.eq(currentIndex).fadeIn();
+    //     function showNextSlide(){
+    //         let nextIndex = (currentIndex + 1) % slideImgsCount;
+    //         slideImgs.eq(currentIndex).fadeTo(300,0.5);
+    //         slideImgs.eq(nextIndex).fadeTo(300,1);
+    //         currentIndex = nextIndex;
+    //     }
+    //     setInterval(showNextSlide, Timer);
+    // })
    
-    // 輪撥時 fadein效果-2號圖
-    $('.all').each(function(){
-        let slideImgs = $(this).find('#item_pic2'),
-        slideImgsCount = slideImgs.length,
-        currentIndex = 0;
-        slideImgs.eq(currentIndex).fadeIn();
-        function showNextSlide2(){
-            let nextIndex = (currentIndex + 1) % slideImgsCount;
-            slideImgs.eq(currentIndex).fadeTo(300,0.5);
-            slideImgs.eq(nextIndex).fadeTo(300,1);
-            currentIndex = nextIndex;
-        }
-        setInterval(showNextSlide2, Timer);
-    })
+    // // 輪撥時 fadein效果-2號圖
+    // $('.all').each(function(){
+    //     let slideImgs = $(this).find('#item_pic2'),
+    //     slideImgsCount = slideImgs.length,
+    //     currentIndex = 0;
+    //     slideImgs.eq(currentIndex).fadeIn();
+    //     function showNextSlide2(){
+    //         let nextIndex = (currentIndex + 1) % slideImgsCount;
+    //         slideImgs.eq(currentIndex).fadeTo(300,0.5);
+    //         slideImgs.eq(nextIndex).fadeTo(300,1);
+    //         currentIndex = nextIndex;
+    //     }
+    //     setInterval(showNextSlide2, Timer);
+    // })
 
 </script>
 </html>

@@ -12,6 +12,8 @@ urlpatterns = [
 
     path('tv2_2',views.tv2_2),
 
+     path('tv2_0',views.tv2_0)
+
 
 
 ]
